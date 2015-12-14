@@ -1,7 +1,7 @@
+# encoding: utf-8
 require 'mini_exiftool'
 require './location'
 require './name_formatter'
-require 'pry-byebug'
 
 class MiniExiftoolRenamer
   attr_reader :source_dir

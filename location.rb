@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Location
   FILE_NAME_MATCH = /^\d.+\.jpg/
   SUBFOLDER_MATCH = /\d{4}$/

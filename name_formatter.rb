@@ -1,3 +1,4 @@
+# encoding: utf-8
 class NameFormatter
 
   attr_reader :file_name, :date
