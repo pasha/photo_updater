@@ -24,6 +24,6 @@ class Location
           "#{source_dir}#{dir}"
         end
       end
-    end
+    end || []
   end
 end

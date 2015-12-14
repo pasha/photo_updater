@@ -1,4 +1,6 @@
 require 'exiftool'
+require './name_formatter'
+
 
 FILE_NAME_MATCH = /\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}.jpg/i
 EXLUDED_DIR = %w(funy_cool_pictures lina_macbook_pro off_road_trips off_road_trips)
@@ -13,7 +15,7 @@ def update_photo(photo)
     return unless file_name[FILE_NAME_MATCH]
 
     source_file = photo.raw[:source_file]
-    created_date = file_name_to_date(file_name)
+    created_date = NameFormatter.new(file_name).to_date
 
     # update photo
     puts "[PhotoRenamer] [Updating] #{source_file} `AllDates to: #{created_date}"
@@ -40,14 +42,6 @@ def process_dir(directory)
   end
 end
 
-def file_name_to_date(file_name)
-  # file_name = "1971-11-12_12-22-30.jpg"
-  # [1971, 11, 12, 12, 22, 30]
-  date_array = file_name.gsub(/\.\w*/,'').gsub('_', '-').split('-').map(&:to_i)
-
-  # #<DateTime: 1971-11-12T12:22:30+00:00 ((2441268j,44550s,0n),+0s,2299161j)>
-  DateTime.new *date_array
-end
 
 
 process_dir '/Volumes/PICTURE/'
